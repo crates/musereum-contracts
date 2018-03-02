@@ -1,5 +1,6 @@
 pragma solidity 0.4.19;
 
+
 interface IExternalStore {
   function setAddress(bytes32 _key, address _value) public returns (bool);
   function setUint(bytes32 _key, uint _value) public returns (bool);
@@ -9,6 +10,7 @@ interface IExternalStore {
   function setString(bytes32 _key, string _value) public returns (bool);
   function setBuffer(bytes32 _key, bytes _value) public returns (bool);
 }
+
 
 library NotSameStorage {
   /// @param _key The key for the record

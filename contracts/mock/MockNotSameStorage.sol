@@ -1,7 +1,7 @@
 pragma solidity 0.4.19;
-
 import "../store/NotSameStorage.sol";
 import "../store/ExternalStorage.sol";
+
 
 contract MockNotSameStorage {
   using NotSameStorage for IExternalStore;

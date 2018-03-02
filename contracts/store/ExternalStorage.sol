@@ -137,7 +137,7 @@ contract ExternalStorage is Ownable {
   function setString(bytes32 _key, string _value) onlyOwner public returns (bool) {
     uint providValueHash = uint(keccak256(_value));
     uint storedValueHash = uint(keccak256(stringStorage[_key]));
-    if(providValueHash == storedValueHash) {
+    if (providValueHash == storedValueHash) {
       return false;
     }
 
@@ -151,7 +151,7 @@ contract ExternalStorage is Ownable {
   function setBuffer(bytes32 _key, bytes _value) onlyOwner public returns (bool) {
     uint providValueHash = uint(keccak256(_value));
     uint storedValueHash = uint(keccak256(bufferStorage[_key]));
-    if(providValueHash == storedValueHash) {
+    if (providValueHash == storedValueHash) {
       return false;
     }
 
