@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-SOLIDITY_COVERAGE=true ./scripts/test.sh
+CONTINUOUS_INTEGRATION=true SOLIDITY_COVERAGE=true ./scripts/test.sh

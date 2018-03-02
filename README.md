@@ -1,6 +1,8 @@
 # Musereum Contracts
-[![Build Status](https://img.shields.io/travis/musereum/musereum-contracts.svg?branch=master&style=flat-square)](https://travis-ci.org/musereum/musereum-contracts)
-[![Coverage Status](https://img.shields.io/coveralls/github/musereum/musereum-contracts/master.svg?style=flat-square)](https://coveralls.io/github/musereum/musereum-contracts?branch=master)
+| Branch  | Status |
+|---|---|
+| **[Master](https://github.com/musereum/musereum-contracts/tree/master)** | [![Build Status](https://img.shields.io/travis/musereum/musereum-contracts.svg?branch=master&style=flat-square)](https://travis-ci.org/musereum/musereum-contracts) [![Coverage Status](https://img.shields.io/coveralls/github/musereum/musereum-contracts/master.svg?style=flat-square)](https://coveralls.io/github/musereum/musereum-contracts?branch=master) |
+| **[Develop](https://github.com/musereum/musereum-contracts/tree/develop)** | [![Build Status](https://img.shields.io/travis/musereum/musereum-contracts.svg?branch=develop&style=flat-square)](https://travis-ci.org/musereum/musereum-contracts) [![Coverage Status](https://img.shields.io/coveralls/github/musereum/musereum-contracts/develop.svg?style=flat-square)](https://coveralls.io/github/musereum/musereum-contracts?branch=develop) |
 
 This repository contains the source code for smart contracts that implement the platform functionality.
 
