@@ -8,10 +8,9 @@ require('babel-register')({
 
 let provider
 const HDWalletProvider = require('truffle-hdwallet-provider-privkey')
-const privateKey = process.env.PRIVATE_KEY
 
-if (!process.env.SOLIDITY_COVERAGE) {
-  provider = new HDWalletProvider(privateKey, 'https://rinkeby.infura.io')
+if (!process.env.SOLIDITY_COVERAGE && process.env.PRIVATE_KEY) {
+  provider = new HDWalletProvider(process.env.PRIVATE_KEY, 'https://rinkeby.infura.io')
 }
 
 module.exports = {
