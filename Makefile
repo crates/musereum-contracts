@@ -1,4 +1,4 @@
-NETWORK:= "testrpc"
+NETWORK:= "development"
 MERGE_PATH:=merged
 
 .PHONY: test clean
