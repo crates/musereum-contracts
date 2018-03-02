@@ -1,0 +1,106 @@
+{
+  "contractName": "TypedContract",
+  "abi": [],
+  "bytecode": "0x60606040523415600e57600080fd5b603580601b6000396000f3006060604052600080fd00a165627a7a7230582016551a52e4a6565ed8a1e0a45846c1f36872199e1dd6cf63df0585ca8662281c0029",
+  "deployedBytecode": "0x6060604052600080fd00a165627a7a7230582016551a52e4a6565ed8a1e0a45846c1f36872199e1dd6cf63df0585ca8662281c0029",
+  "sourceMap": "46:717:5:-;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "46:717:5:-;;;;;",
+  "source": "pragma solidity 0.4.19;\n\nimport \"./Std.sol\";\n\ncontract TypedContract is Std {\n  // function getBloomBits(string _raw) public returns (\n  //   uint8 a, \n  //   uint8 b, \n  //   uint8 c, \n  //   uint8 d, \n  //   uint8 f\n  // ) {\n  //   uint rawSha = (uint) sha3(_raw)\n  //   a = 1 << (sha3(rawSha + 10) / 256)\n  //   b = 1 << (sha3(rawSha + 15220) / 256)\n  //   c = 1 << (sha3(rawSha + 1321512) / 256)\n  //   d = 1 << (sha3(rawSha + 5123561223156333450) / 256)\n  //   f = 1 << (sha3(rawSha + 14124092111289047123857931474791231250) / 256)\n  // }\n\n  // function getTypeInternal() internal returns(bytes32) {\n  //   return getType() & parent.getBloomBits()\n  // }\n\n  // function getType() public returns(bytes32) {\n  //   return getBloomBits(\"TypedContract\")\n  // }\n}",
+  "sourcePath": "/Users/aler/crypto/musereum/musereum-contracts/contracts/std/TypedContract.sol",
+  "ast": {
+    "attributes": {
+      "absolutePath": "/Users/aler/crypto/musereum/musereum-contracts/contracts/std/TypedContract.sol",
+      "exportedSymbols": {
+        "TypedContract": [
+          289
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.4",
+            ".19"
+          ]
+        },
+        "id": 285,
+        "name": "PragmaDirective",
+        "src": "0:23:5"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 284,
+          "absolutePath": "/Users/aler/crypto/musereum/musereum-contracts/contracts/std/Std.sol",
+          "file": "./Std.sol",
+          "scope": 290,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 286,
+        "name": "ImportDirective",
+        "src": "25:19:5"
+      },
+      {
+        "attributes": {
+          "contractDependencies": [
+            283
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            289,
+            283
+          ],
+          "name": "TypedContract",
+          "nodes": [
+            null
+          ],
+          "scope": 290
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": [
+                null
+              ]
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "Std",
+                  "referencedDeclaration": 283,
+                  "type": "contract Std"
+                },
+                "id": 287,
+                "name": "UserDefinedTypeName",
+                "src": "72:3:5"
+              }
+            ],
+            "id": 288,
+            "name": "InheritanceSpecifier",
+            "src": "72:3:5"
+          }
+        ],
+        "id": 289,
+        "name": "ContractDefinition",
+        "src": "46:717:5"
+      }
+    ],
+    "id": 290,
+    "name": "SourceUnit",
+    "src": "0:763:5"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.19+commit.c4cbbb05.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "1.0.1",
+  "updatedAt": "2018-03-02T12:21:15.942Z"
+}
