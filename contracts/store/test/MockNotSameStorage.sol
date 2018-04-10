@@ -1,6 +1,7 @@
-pragma solidity 0.4.19;
-import "../store/NotSameStorage.sol";
-import "../store/ExternalStorage.sol";
+pragma solidity ^0.4.18;
+
+import "../NotSameStorage.sol";
+import "../ExternalStorage.sol";
 
 
 contract MockNotSameStorage {
