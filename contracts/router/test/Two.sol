@@ -1,4 +1,4 @@
-pragma solidity 0.4.21;
+pragma solidity ^0.4.19;
 import "./One.sol";
 
 contract Two is One {

@@ -1,4 +1,4 @@
-pragma solidity 0.4.21;
+pragma solidity ^0.4.19;
 
 contract Resolver {
   struct Pointer { address destination; uint outsize; }
@@ -48,7 +48,7 @@ contract Resolver {
   }
 
   function setFallback(address _fallback) onlyAdmin public {
-    emit FallbackChanged(fallback, _fallback);
+    FallbackChanged(fallback, _fallback);
     fallback = _fallback;
   }
 

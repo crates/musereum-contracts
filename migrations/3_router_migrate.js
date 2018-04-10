@@ -28,4 +28,4 @@ module.exports = function (deployer) {
     TheNextAnswer,
     PayableContract
   ])
-};
+}
