@@ -1,16 +1,14 @@
-pragma solidity 0.4.19;
-
+pragma solidity ^0.4.18;
 
 interface IExternalStore {
-  function setAddress(bytes32 _key, address _value) public returns (bool);
-  function setUint(bytes32 _key, uint _value) public returns (bool);
-  function setBytes(bytes32 _key, bytes32 _value) public returns (bool);
-  function setBool(bytes32 _key, bool _value) public returns (bool);
-  function setInt(bytes32 _key, int _value) public returns (bool);
-  function setString(bytes32 _key, string _value) public returns (bool);
-  function setBuffer(bytes32 _key, bytes _value) public returns (bool);
+  function setAddress(bytes32 _key, address _value) external returns (bool);
+  function setUint(bytes32 _key, uint _value) external returns (bool);
+  function setBytes(bytes32 _key, bytes32 _value) external returns (bool);
+  function setBool(bytes32 _key, bool _value) external returns (bool);
+  function setInt(bytes32 _key, int _value) external returns (bool);
+  function setString(bytes32 _key, string _value) external returns (bool);
+  function setBuffer(bytes32 _key, bytes _value) external returns (bool);
 }
-
 
 library NotSameStorage {
   /// @param _key The key for the record
