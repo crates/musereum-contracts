@@ -82,9 +82,6 @@ contract('Entrance', () => {
   describe('call validation', () => {
     it('should call answer', async () => {
       const answerInterface = new ethers.Interface(TheAnswer.abi)
-      const entranceInterface = new ethers.Interface(Entrance.abi)
-
-      // const { data: entranceSignature } = entranceInterface.functions.entrance()
       const answerCall = answerInterface.functions.getAnswer()
       const callData = 'answer'.keccak256() + answerCall.data.substr(2)
 
@@ -92,31 +89,12 @@ contract('Entrance', () => {
       console.log(`original hash is ${'answer'.keccak256()}`)
       console.log(`original call data is ${callData}`)
 
-      const tx = await entrance.sendTransaction({
-        value: 0,
-        data: callData,
-        gas: '3000000'
-      })
-
-      const answer = await web3.eth.call({
+      const answer = answerCall.parse(await web3.eth.call({
         to: entrance.address,
-        data: callData,
-        gas: '300000'
-      })
+        data: callData
+      }))
 
-      console.log(`extracted data is ${answerCall.parse(answer)}`)
-
-      assert.fail()
-
-      // console.log(await entrance.Call({
-      //   data: callData
-      // }))
-      // const answer = await entrance.call('answer'.keccak256())
-      // assert.equal(42, answer)
+      assert.equal(42, answer)
     })
-  })
-
-  describe('call execution', () => {
-
   })
 })
