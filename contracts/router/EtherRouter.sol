@@ -1,7 +1,8 @@
 pragma solidity ^0.4.19;
-
 import "./Resolver.sol";
 
+
+// solium-disable security/no-inline-assembly
 contract EtherRouter {
   Resolver resolver;
 

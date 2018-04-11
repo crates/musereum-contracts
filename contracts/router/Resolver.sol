@@ -1,7 +1,13 @@
 pragma solidity ^0.4.19;
 
+
+// solium-disable security/no-inline-assembly
 contract Resolver {
-  struct Pointer { address destination; uint outsize; }
+  struct Pointer {
+    address destination;
+    uint outsize;
+  }
+
   mapping (bytes4 => Pointer) public pointers;
   address public fallback;
   address public admin;
@@ -13,7 +19,9 @@ contract Resolver {
   event FallbackChanged(address oldFallback, address newFallback); 
 
   modifier onlyAdmin {
-    if (msg.sender != admin) { revert(); }
+    if (msg.sender != admin) {
+      revert();
+    }
     _;
   }
 
@@ -24,7 +32,9 @@ contract Resolver {
 
   // Public API
   function lookup(bytes4 sig, bytes msgData) public returns(address, uint) {
-    if (address(replacement) != 0) { return replacement.lookup(sig, msgData); } // If Resolver has been replaced, pass call to replacement
+    if (address(replacement) != 0) {
+      return replacement.lookup(sig, msgData);
+    } // If Resolver has been replaced, pass call to replacement
 
     return (destination(sig, msgData), outsize(sig, msgData));
   }
