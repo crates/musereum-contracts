@@ -1,5 +1,5 @@
 pragma solidity ^0.4.19;
-import "../router/EtherRouter.sol";
+import "../router/Router.sol";
 
 
 // solium-disable security/no-inline-assembly
@@ -9,7 +9,7 @@ contract Entrance {
   function () payable public {
     bytes32 aliasHash;
     uint result;
-    EtherRouter router;
+    Router router;
     address destination;
     uint outsize;
     bytes4 signature;
@@ -18,7 +18,7 @@ contract Entrance {
       signature := calldataload(32)
     }
 
-    router = EtherRouter(routers[aliasHash]);
+    router = Router(routers[aliasHash]);
     (destination, outsize) = router.lookup(signature, msg.data);
 
     assembly {

@@ -3,10 +3,10 @@ import "./Resolver.sol";
 
 
 // solium-disable security/no-inline-assembly
-contract EtherRouter {
+contract Router {
   Resolver resolver;
 
-  function EtherRouter(Resolver _resolver) public {
+  function Router(Resolver _resolver) public {
     resolver = _resolver;
   }
 

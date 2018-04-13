@@ -3,7 +3,7 @@ const artifacts = global.artifacts || {}
 const contract = global.contract || {}
 const it = global.it || {}
 
-const EtherRouter = artifacts.require('EtherRouter.sol')
+const Router = artifacts.require('Router.sol')
 const Resolver = artifacts.require('Resolver.sol')
 const TheAnswer = artifacts.require('TheAnswer.sol')
 const Multiplier = artifacts.require('Multiplier.sol')
@@ -74,7 +74,7 @@ contract('Resolver', function (accounts) {
       .then(function (result) { firstResolver = result })
       .then(function () { return Resolver.new(TheNextAnswer.address) })
       .then(function (result) { secondResolver = result })
-      .then(function () { return EtherRouter.new(firstResolver.address) })
+      .then(function () { return Router.new(firstResolver.address) })
       .then(function (result) { fakeAnswer = TheAnswer.at(result.address) })
       .then(function () { return fakeAnswer.getAnswer() })
       .then(function (result) {

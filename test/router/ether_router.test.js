@@ -4,7 +4,7 @@ const contract = global.contract || {}
 const it = global.it || {}
 // const describe = global.describe || {}
 
-const EtherRouter = artifacts.require('EtherRouter.sol')
+const Router = artifacts.require('Router.sol')
 const Resolver = artifacts.require('Resolver.sol')
 const TheAnswer = artifacts.require('TheAnswer.sol')
 const Multiplier = artifacts.require('Multiplier.sol')
@@ -18,15 +18,15 @@ const List = artifacts.require('List.sol')
 const Thrower = artifacts.require('Thrower.sol')
 const PayableContract = artifacts.require('PayableContract.sol')
 
-contract('EtherRouter', function (accounts) {
+contract('Router', function (accounts) {
   it('should be able to get back a return value', function (done) {
     var resolver
 
     Resolver.new(0)
       .then(function (result) { resolver = result })
-      .then(function () { return EtherRouter.new(resolver.address) })
-      .then(function (etherRouter) {
-        var fakeAnswer = TheAnswer.at(etherRouter.address)
+      .then(function () { return Router.new(resolver.address) })
+      .then(function (Router) {
+        var fakeAnswer = TheAnswer.at(Router.address)
         TheAnswer.deployed()
           .then(function (result) { return resolver.register('getAnswer()', result.address, 32) })
           .then(function () { return fakeAnswer.getAnswer() })
@@ -43,9 +43,9 @@ contract('EtherRouter', function (accounts) {
 
     Resolver.new(0)
       .then(function (result) { resolver = result })
-      .then(function () { return EtherRouter.new(resolver.address) })
-      .then(function (etherRouter) {
-        var fakeMultiplier = Multiplier.at(etherRouter.address)
+      .then(function () { return Router.new(resolver.address) })
+      .then(function (Router) {
+        var fakeMultiplier = Multiplier.at(Router.address)
         Multiplier.deployed()
           .then(function (result) { return resolver.register('multiply(uint256,uint256)', result.address, 32) })
           .then(function () { return fakeMultiplier.multiply.call(7, 3) })
@@ -61,9 +61,9 @@ contract('EtherRouter', function (accounts) {
 
     Resolver.new(0)
       .then(function (result) { resolver = result })
-      .then(function () { return EtherRouter.new(resolver.address) })
-      .then(function (etherRouter) {
-        var fakeLost = Lost.at(etherRouter.address)
+      .then(function () { return Router.new(resolver.address) })
+      .then(function (Router) {
+        var fakeLost = Lost.at(Router.address)
         Lost.deployed()
           .then(function (result) { return resolver.register('getNumbers()', result.address, 192) })
           .then(function () { return fakeLost.getNumbers.call() })
@@ -85,9 +85,9 @@ contract('EtherRouter', function (accounts) {
 
     Resolver.new(0)
       .then(function (result) { resolver = result })
-      .then(function () { return EtherRouter.new(resolver.address) })
-      .then(function (etherRouter) {
-        var fakeSimpleStore = SimpleStore.at(etherRouter.address)
+      .then(function () { return Router.new(resolver.address) })
+      .then(function (Router) {
+        var fakeSimpleStore = SimpleStore.at(Router.address)
         SimpleStore.deployed()
           .then(function (result) { simpleStore = result })
           .then(function (result) { return resolver.register('getStored()', simpleStore.address, 32) })
@@ -106,9 +106,9 @@ contract('EtherRouter', function (accounts) {
 
     Resolver.new(0)
       .then(function (result) { resolver = result })
-      .then(function () { return EtherRouter.new(resolver.address) })
-      .then(function (etherRouter) {
-        var fakeResolverAccessor = ResolverAccessor.at(etherRouter.address)
+      .then(function () { return Router.new(resolver.address) })
+      .then(function (Router) {
+        var fakeResolverAccessor = ResolverAccessor.at(Router.address)
         ResolverAccessor.deployed()
           .then(function (result) { return resolver.register('getResolver()', result.address, 32) })
           .then(function () { return fakeResolverAccessor.getResolver.call() })
@@ -124,9 +124,9 @@ contract('EtherRouter', function (accounts) {
 
     Resolver.new(0)
       .then(function (result) { resolver = result })
-      .then(function () { return EtherRouter.new(resolver.address) })
-      .then(function (etherRouter) {
-        var fakeSenderChecker = SenderChecker.at(etherRouter.address)
+      .then(function () { return Router.new(resolver.address) })
+      .then(function (Router) {
+        var fakeSenderChecker = SenderChecker.at(Router.address)
         SenderChecker.deployed()
           .then(function (result) { return resolver.register('checkSender()', result.address, 32) })
           .then(function () { return fakeSenderChecker.checkSender.call() })
@@ -144,10 +144,10 @@ contract('EtherRouter', function (accounts) {
 
     Resolver.new(0)
       .then(function (result) { resolver = result })
-      .then(function () { return EtherRouter.new(resolver.address) })
-      .then(function (etherRouter) {
-        var fakeOne = One.at(etherRouter.address)
-        var fakeTwo = Two.at(etherRouter.address)
+      .then(function () { return Router.new(resolver.address) })
+      .then(function (Router) {
+        var fakeOne = One.at(Router.address)
+        var fakeTwo = Two.at(Router.address)
         One.deployed()
           .then(function (result) { one = result })
           .then(function () { return Two.deployed() })
@@ -176,9 +176,9 @@ contract('EtherRouter', function (accounts) {
 
     Resolver.new(0)
       .then(function (result) { resolver = result })
-      .then(function () { return EtherRouter.new(resolver.address) })
-      .then(function (etherRouter) {
-        var fakeAnswer = TheAnswer.at(etherRouter.address)
+      .then(function () { return Router.new(resolver.address) })
+      .then(function (Router) {
+        var fakeAnswer = TheAnswer.at(Router.address)
         TheAnswer.deployed()
           .then(function (result) { theAnswer = result })
           .then(function () { return resolver.register('getAnswer()', 0, 0) })
@@ -198,9 +198,9 @@ contract('EtherRouter', function (accounts) {
 
     Resolver.new(0)
       .then(function (result) { resolver = result })
-      .then(function () { return EtherRouter.new(resolver.address) })
-      .then(function (etherRouter) {
-        var fakeList = List.at(etherRouter.address)
+      .then(function () { return Router.new(resolver.address) })
+      .then(function (Router) {
+        var fakeList = List.at(Router.address)
         List.deployed()
           .then(function (result) { list = result })
           .then(function () { return resolver.register('setList(uint256,uint256[])', list.address, 0) })
@@ -227,9 +227,9 @@ contract('EtherRouter', function (accounts) {
 
     Resolver.new(0)
       .then(function (result) { resolver = result })
-      .then(function () { return EtherRouter.new(resolver.address) })
-      .then(function (etherRouter) {
-        var fakeThrower = Thrower.at(etherRouter.address)
+      .then(function () { return Router.new(resolver.address) })
+      .then(function (Router) {
+        var fakeThrower = Thrower.at(Router.address)
         Thrower.deployed()
           .then(function (result) { return resolver.register('throws()', result.address, 0) })
           .then(function () { return fakeThrower.throws() })
@@ -244,9 +244,9 @@ contract('EtherRouter', function (accounts) {
 
     Resolver.new(0)
       .then(function (result) { resolver = result })
-      .then(function () { return EtherRouter.new(resolver.address) })
-      .then(function (etherRouter) {
-        var fakePayable = PayableContract.at(etherRouter.address)
+      .then(function () { return Router.new(resolver.address) })
+      .then(function (Router) {
+        var fakePayable = PayableContract.at(Router.address)
         PayableContract.deployed()
           .then(function (result) { payableContract = result })
           .then(function () { return resolver.setFallback(payableContract.address) })
