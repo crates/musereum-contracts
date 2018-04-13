@@ -3,8 +3,8 @@ import "../router/Resolver.sol";
 
 
 // solium-disable security/no-inline-assembly
-contract Entrance { 
-  mapping (bytes32 => Resolver) public resolvers;
+contract Entrance {
+  mapping (bytes32 => address) public resolvers;
 
   function () public {
     bytes32 aliasHash;
@@ -18,15 +18,16 @@ contract Entrance {
       signature := calldataload(32)
     }
 
-    resolver = resolvers[aliasHash];    
+    resolver = Resolver(resolvers[aliasHash]);
     (destination, outsize) = resolver.lookup(signature, msg.data);
 
     assembly {
       let size := sub(calldatasize, 32)
       calldatacopy(mload(0x40), 32, size)
-      result := delegatecall(
+      result := call(
         sub(gas, 700), 
-        destination, 
+        destination,
+        callvalue,
         mload(0x40),
         size, 
         mload(0x40), 
@@ -42,14 +43,14 @@ contract Entrance {
     }
   }
 
-  function register(string alias, address resolver) public {
-    bytes32 aliasHash = keccak256(alias);
+  function register(string _alias, address _resolver) public {
+    bytes32 aliasHash = keccak256(_alias);
     require(resolvers[aliasHash] == address(0x0));
-    resolvers[aliasHash] = Resolver(resolver);
+    resolvers[aliasHash] = _resolver;
   }
 
-  function getResolver(string alias) view public returns (address resolver) {
-    bytes32 aliasHash = keccak256(alias);
-    resolver = resolvers[aliasHash];
+  function getResolver(string _alias) view public returns (address) {
+    bytes32 aliasHash = keccak256(_alias);
+    return resolvers[aliasHash];
   }
 }
