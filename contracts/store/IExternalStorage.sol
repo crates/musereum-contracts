@@ -1,7 +1,7 @@
 pragma solidity ^0.4.19;
 
 
-interface IExternalStorage {
+contract IExternalStorage {
   function setAddress(bytes32 _key, address _value) public returns (bool);
   function setUint(bytes32 _key, uint _value) public returns (bool);
   function setBytes(bytes32 _key, bytes32 _value) public returns (bool);

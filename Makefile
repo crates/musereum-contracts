@@ -3,6 +3,12 @@ MERGE_PATH:=merged
 
 .PHONY: test clean
 
+doc: compile
+	@exec touch $(shell pwd)/docs/$(value CONTRACT).md
+	@exec rm -rf $(shell pwd)/docs/$(value CONTRACT).md
+	@exec $(shell pwd)/node_modules/.bin/babel-node $(shell pwd)/makeDoc.js >> $(shell pwd)/docs/$(value CONTRACT).md
+	@exec cat $(shell pwd)/docs/$(value CONTRACT).md
+
 clean:
 	@echo "Cleaning Project Builds"
 	@rm -rf $(shell pwd)/merged

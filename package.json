@@ -38,7 +38,11 @@
     "truffle-hdwallet-provider-privkey": "^0.1.0",
     "zeppelin-solidity": "^1.7.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@digix/doxity": "^0.5.2",
+    "babel-cli": "^6.26.0",
+    "doxity": "^1.0.0"
+  },
   "scripts": {
     "test": "scripts/test.sh",
     "lint": "eslint .",

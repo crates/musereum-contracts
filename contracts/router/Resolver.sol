@@ -1,6 +1,9 @@
 pragma solidity ^0.4.19;
 
 
+/// @notice Resolver is dispatcher of contract call to provide upgradable behaviour
+/// @author Peter Borah <peterborah@gmail.com>
+/// @author Aler Denisov <aler.zampillo@gmail.com>
 // solium-disable security/no-inline-assembly
 contract Resolver {
   struct Pointer {
