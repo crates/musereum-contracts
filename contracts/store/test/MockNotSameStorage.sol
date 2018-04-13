@@ -5,12 +5,12 @@ import "../ExternalStorage.sol";
 
 
 contract MockNotSameStorage {
-  using NotSameStorage for IExternalStore;
+  using NotSameStorage for IExternalStorage;
 
-  IExternalStore extStorage;
+  IExternalStorage extStorage;
 
   function MockNotSameStorage(address _extStorage) public {
-    extStorage = IExternalStore(_extStorage);
+    extStorage = IExternalStorage(_extStorage);
   }
 
   /// @param _key The key for the record

@@ -10,14 +10,17 @@ contract EtherRouter {
     resolver = _resolver;
   }
 
+  function lookup(bytes4 sig, bytes data) public returns (address, uint) {
+    return resolver.lookup(sig, data);
+  }
+
   function() payable public {
     uint r;
-
     // Get routing information for the called function
     address destination;
     uint outsize;
     
-    (destination, outsize) = resolver.lookup(msg.sig, msg.data);
+    (destination, outsize) = lookup(msg.sig, msg.data);
 
     // Make the call
     assembly {
