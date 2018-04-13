@@ -1,11 +1,11 @@
-pragma solidity ^0.4.18;
-
+pragma solidity ^0.4.19;
+import "./IExternalStorage.sol";
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 
 
 /// @title The primary persistent storage for updatable contracts
 /// @author Aler Denisov <aler.zampillo@gmail.com>
-contract ExternalStorage is Ownable {
+contract ExternalStorage is Ownable, IExternalStorage {
   // ███████╗████████╗ ██████╗ ██████╗  █████╗  ██████╗ ███████╗    ███████╗██╗███████╗██╗     ██████╗ ███████╗
   // ██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗██╔══██╗██╔════╝ ██╔════╝    ██╔════╝██║██╔════╝██║     ██╔══██╗██╔════╝
   // ███████╗   ██║   ██║   ██║██████╔╝███████║██║  ███╗█████╗      █████╗  ██║█████╗  ██║     ██║  ██║███████╗
@@ -29,43 +29,43 @@ contract ExternalStorage is Ownable {
   //  ╚═════╝ ╚══════╝   ╚═╝      ╚═╝   ╚══════╝╚═╝  ╚═╝╚══════╝
   /// @param _key The key for the record
   /// @return address value stored at providen key
-  function getAddress(bytes32 _key) public constant returns (address) {
+  function getAddress(bytes32 _key) view public returns (address) {
     return addressStorage[_key];
   }
 
   /// @param _key The key for the record
   /// @return uint value stored at providen key
-  function getUint(bytes32 _key) public constant returns (uint) {
+  function getUint(bytes32 _key) view public returns (uint) {
     return uintStorage[_key];
   }
 
   /// @param _key The key for the record
   /// @return bytes32 value stored at providen key
-  function getBytes(bytes32 _key) public constant returns (bytes32) {
+  function getBytes(bytes32 _key) view public returns (bytes32) {
     return bytesStorage[_key];
   }
 
   /// @param _key The key for the record
   /// @return bool value stored at providen key
-  function getBool(bytes32 _key) public constant returns (bool) {
+  function getBool(bytes32 _key) view public returns (bool) {
     return boolStorage[_key];
   }
 
   /// @param _key The key for the record
   /// @return int value stored at providen key
-  function getInt(bytes32 _key) public constant returns (int) {
+  function getInt(bytes32 _key) view public returns (int) {
     return intStorage[_key];
   }
 
   /// @param _key The key for the record
   /// @return string value stored at providen key
-  function getString(bytes32 _key) public constant returns (string) {
+  function getString(bytes32 _key) view public returns (string) {
     return stringStorage[_key];
   }
 
   /// @param _key The key for the record
   /// @return bytes buffer stored at providen key
-  function getBuffer(bytes32 _key) public constant returns (bytes) {
+  function getBuffer(bytes32 _key) view public returns (bytes) {
     return bufferStorage[_key];
   }
 
