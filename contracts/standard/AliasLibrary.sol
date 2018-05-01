@@ -13,7 +13,8 @@ library AliasLibrary {
     while (ptr < end) {
       uint8 b;
       assembly { b := and(mload(ptr), 0xFF) }
-      if (b.charIsDot() || b.charIsNumber() || b.charIsLetter() || b.charIsLowLine() || b.charIsMinus()) {
+      if (b.charIsNumber() || b.charIsLetter()) {
+      // if (b.charIsDot() || b.charIsNumber() || b.charIsLetter() || b.charIsLowLine() || b.charIsMinus()) {
         ptr += 1;
       } else {
         return false;

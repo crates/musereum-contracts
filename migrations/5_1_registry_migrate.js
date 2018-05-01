@@ -20,9 +20,7 @@ module.exports = function (deployer) {
     const resolver = await Resolver.new(registry.address)
     const router = await Router.new(resolver.address)
 
-    await resolver.register('setAlias(address,string)', registry.address, 0)
-    await resolver.register('linkWallet(address,address)', registry.address, 0)
-    // await resolver.register('baseWallets(address)', registry.address, 32)
+    await resolver.setFallback(registry.address)
     await entrance.register('core.user-registry', router.address)
   })
 }
