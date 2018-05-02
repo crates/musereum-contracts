@@ -10,7 +10,6 @@ contract Entrance {
     bytes32 aliasHash;
     uint result;
     Router router;
-    address destination;
     uint outsize;
     bytes4 signature;
     assembly {
@@ -19,7 +18,7 @@ contract Entrance {
     }
 
     router = Router(routers[aliasHash]);
-    (destination, outsize) = router.lookup(signature, msg.data);
+    outsize = getOutsize(router, signature, msg.data);
 
     assembly {
       let size := sub(calldatasize, 32)
@@ -41,6 +40,14 @@ contract Entrance {
     assembly {
       return(mload(0x40), outsize)
     }
+  }
+
+  function getOutsize(address _router, bytes4 _signature, bytes _data) view public returns (uint) {
+    address _;
+    uint outsize;
+
+    (_, outsize) = Router(_router).lookup(_signature, _data);
+    return outsize;
   }
 
   function register(string _alias, address _router) public {
