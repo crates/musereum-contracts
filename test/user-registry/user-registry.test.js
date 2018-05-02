@@ -1,3 +1,5 @@
+const expectThrow = require('../helpers/expectThrow')
+
 const assert = global.assert || {}
 const artifacts = global.artifacts || {}
 const contract = global.contract || {}
@@ -64,7 +66,7 @@ contract('UserRegistry', ([main, extra, extra2, another, another2]) => {
 
   describe('account aliases', () => {
     it('should allow to set alias for a wallet', async () => {
-      const aliasTx = UserRegistryInterface.functions.setAlias(main, 'test1123')
+      const aliasTx = UserRegistryInterface.functions.setAlias(main, 'test-wallet')
       await web3.eth.sendTransaction({
         to: entrance.address,
         from: main,
@@ -76,16 +78,17 @@ contract('UserRegistry', ([main, extra, extra2, another, another2]) => {
 
     it('reject non-safe alias', async () => {
       const aliasTx = UserRegistryInterface.functions.setAlias(main, 'non safe алиас')
-      const tx = await web3.eth.sendTransaction({
-        to: entrance.address,
-        from: main,
-        data: 'core.user-registry'.keccak256() + aliasTx.data.substr(2),
-        value: 0,
-        gas: 3000000
-      })
-
-      // console.log(tx)
-      console.log(await web3.eth.getTransaction(tx))
+      try {
+        await web3.eth.sendTransaction({
+          to: entrance.address,
+          from: main,
+          data: 'core.user-registry'.keccak256() + aliasTx.data.substr(2),
+          value: 0,
+          gas: 3000000
+        })
+      } catch (error) {
+        assert.isTrue(error.message.search('revert') >= 0)
+      }
     })
 
     it('should return proper wallet by alias', async () => {
@@ -101,8 +104,19 @@ contract('UserRegistry', ([main, extra, extra2, another, another2]) => {
       assert.equal(main, answer[0].toLowerCase())
     })
 
-    it('should allow to change alias', async () => {
-
+    it('should reject to change alias', async () => {
+      const aliasTx = UserRegistryInterface.functions.setAlias(main, 'valid-alias')
+      try {
+        await web3.eth.sendTransaction({
+          to: entrance.address,
+          from: main,
+          data: 'core.user-registry'.keccak256() + aliasTx.data.substr(2),
+          value: 0,
+          gas: 3000000
+        })
+      } catch (error) {
+        assert.isTrue(error.message.search('revert') >= 0)
+      }
     })
   })
 })
