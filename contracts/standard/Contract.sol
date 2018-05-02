@@ -5,7 +5,7 @@ import "./AliasLibrary.sol";
 
 
 interface IEntrance {
-  function getOutsize(address _router, bytes4 _signature, bytes _data) view public returns (uint);
+  function getOutsize(address _router, bytes4 _signature, bytes _data) view external returns (uint);
 }
 
 contract Contract {
@@ -22,7 +22,7 @@ contract Contract {
     entrance = _entrance;
   }
 
-  modifier fromEntrance() {
+  modifier from_entrance() {
     require(msg.sender == entrance);
     _;
   }
