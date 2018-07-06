@@ -8,6 +8,8 @@ interface IEntrance {
   function getOutsize(address _router, bytes4 _signature, bytes _data) view external returns (uint);
 }
 
+
+// solium-disable security/mixedcase
 contract Contract {
   using StandardLibrary for *;
   using StringLibrary for *;
@@ -15,15 +17,13 @@ contract Contract {
   
   address public resolver;
   address public entrance;
-
-  function Contract(address _entrance) public {
-    require(_entrance != address(0x0));
-    require(_entrance.isContract());
-    entrance = _entrance;
-  }
-
+  
   modifier from_entrance() {
     require(msg.sender == entrance);
     _;
+  }
+  
+  function _get_addresses() public view returns (address, address, address, address) {
+    return (msg.sender, entrance, resolver, tx.origin);
   }
 }

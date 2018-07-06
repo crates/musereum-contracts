@@ -1,5 +1,6 @@
 const expectThrow = require('../helpers/expectThrow')
 
+const web3 = global.web3 || {}
 const assert = global.assert || {}
 const artifacts = global.artifacts || {}
 const contract = global.contract || {}
@@ -35,6 +36,28 @@ contract('UserRegistry', ([main, extra, extra2, another, another2]) => {
 
     it('should be available in entrance', async () => {
       assert.notEqual(nullAddress, await entrance.getRouter('core.user-registry'))
+    })
+
+    it('sender should be entrance', async () => {
+      const getSenderCall = UserRegistryInterface.functions._get_addresses()
+      const senderAnswer = getSenderCall.parse(await web3.eth.call({
+        from: main,
+        to: entrance.address,
+        value: 0,
+        gas: 300000,
+        data: 'core.user-registry'.keccak256() + getSenderCall.data.substr(2)
+      }))
+
+      const getEntranceCall = UserRegistryInterface.functions.entrance()
+      const entranceAnswer = getEntranceCall.parse(await web3.eth.call({
+        from: main,
+        to: entrance.address,
+        value: 0,
+        gas: 300000,
+        data: 'core.user-registry'.keccak256() + getEntranceCall.data.substr(2)
+      }))
+
+      assert.equal(entranceAnswer[0].toLowerCase(), senderAnswer[1].toLowerCase())
     })
   })
 

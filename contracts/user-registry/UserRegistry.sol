@@ -9,8 +9,6 @@ contract UserRegistry is Contract {
   mapping (address => string) public walletAliases;
   mapping (bytes32 => address) public knownAliases;
 
-  function UserRegistry(address _entrance) Contract(_entrance) public {}
-
   function getMainWallet(address wallet) public view returns (address) {
     address main = baseWallets[wallet];
     if (main == address(0x0)) {
@@ -19,13 +17,12 @@ contract UserRegistry is Contract {
     return main;
   }
 
-  function setAlias (address wallet, string alias) public {
-    address main = getMainWallet(wallet);
+  function setAlias (address wallet, string alias) public { //from_entrance() public {
     require(wallet != address(0x0));
+    address main = getMainWallet(wallet);
     require(bytes(walletAliases[main]).length == 0);
     require(bytes(alias).length < 32);
     require(bytes(alias).length > 5);
-
     require(alias.isAliasSafe());
     require(alias.toSlice().len() < 32);
 

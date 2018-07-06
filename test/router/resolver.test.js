@@ -74,7 +74,7 @@ contract('Resolver', function (accounts) {
       .then(function (result) { firstResolver = result })
       .then(function () { return Resolver.new(TheNextAnswer.address) })
       .then(function (result) { secondResolver = result })
-      .then(function () { return Router.new(firstResolver.address) })
+      .then(function () { return Router.new(firstResolver.address, 0) })
       .then(function (result) { fakeAnswer = TheAnswer.at(result.address) })
       .then(function () { return fakeAnswer.getAnswer() })
       .then(function (result) {

@@ -1,17 +1,18 @@
 pragma solidity ^0.4.19;
 import "./Resolver.sol";
 
-
 // solium-disable security/no-inline-assembly
 contract Router {
-  Resolver resolver;
+  address resolver;
+  address entrance;
 
-  function Router(Resolver _resolver) public {
+  function Router(Resolver _resolver, address _entrance) public {
     resolver = _resolver;
+    entrance = _entrance;
   }
 
   function lookup(bytes4 sig, bytes data) public returns (address, uint) {
-    return resolver.lookup(sig, data);
+    return Resolver(resolver).lookup(sig, data);
   }
 
   function() payable public {

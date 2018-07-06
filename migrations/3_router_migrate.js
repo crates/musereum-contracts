@@ -1,4 +1,5 @@
 const Resolver = artifacts.require('Resolver.sol')
+const Router = artifacts.require('Router.sol')
 const TheAnswer = artifacts.require('TheAnswer.sol')
 const Multiplier = artifacts.require('Multiplier.sol')
 const Lost = artifacts.require('Lost.sol')

@@ -68,7 +68,7 @@ contract('Entrance', () => {
 
     it('should register answer contract', async () => {
       const resolver = await Resolver.new(0)
-      const router = await Router.new(resolver.address)
+      const router = await Router.new(resolver.address, entrance.address)
       const answer = await TheAnswer.deployed()
       await resolver.register('getAnswer()', answer.address, 32)
       await entrance.register('answer', router.address)
@@ -102,7 +102,7 @@ contract('Entrance', () => {
 
     it('should be able to pass along arguments', async () => {
       const resolver = await Resolver.new(0)
-      const router = await Router.new(resolver.address)
+      const router = await Router.new(resolver.address, entrance.address)
       const multiplier = await Multiplier.deployed()
       await resolver.register('multiply(uint256,uint256)', multiplier.address, 32)
       await entrance.register('multiplier', router.address)
@@ -121,7 +121,7 @@ contract('Entrance', () => {
 
     it('should be able to get multiple return values', async () => {
       const resolver = await Resolver.new(0)
-      const router = await Router.new(resolver.address)
+      const router = await Router.new(resolver.address, entrance.address)
       const lost = await Lost.deployed()
       await resolver.register('getNumbers()', lost.address, 192)
       await entrance.register('lost', router.address)
@@ -145,7 +145,7 @@ contract('Entrance', () => {
 
     it('should be able to register store contract', async () => {
       const resolver = await Resolver.new(0)
-      const router = await Router.new(resolver.address)
+      const router = await Router.new(resolver.address, entrance.address)
       const store = await SimpleStore.deployed()
       await resolver.register('store(uint256)', store.address, 0)
       await resolver.register('getStored()', store.address, 32)
@@ -179,7 +179,7 @@ contract('Entrance', () => {
 
     it('should be able to read resolver on the contract', async () => {
       const resolver = await Resolver.new(0)
-      const router = await Router.new(resolver.address)
+      const router = await Router.new(resolver.address, entrance.address)
       const store = await ResolverAccessor.deployed()
       await resolver.register('getResolver()', store.address, 32)
       await entrance.register('resolverAccessor', router.address)
@@ -197,7 +197,7 @@ contract('Entrance', () => {
 
     it('should allow upgrades that add storage data', async () => {
       const resolver = await Resolver.new(0)
-      const router = await Router.new(resolver.address)
+      const router = await Router.new(resolver.address, entrance.address)
 
       const one = await One.deployed()
       const two = await Two.deployed()
@@ -238,7 +238,7 @@ contract('Entrance', () => {
 
     it('should be able to pass ether to payable functions', async () => {
       const resolver = await Resolver.new(0)
-      const router = await Router.new(resolver.address)
+      const router = await Router.new(resolver.address, entrance.address)
       const payable = await PayableContract.deployed()
       const payableInterface = new ethers.Interface(PayableContract.abi)
       const sentAmountCall = payableInterface.functions.sentAmount()
